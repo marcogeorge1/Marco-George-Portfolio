@@ -1,13 +1,25 @@
-const navBar = document.querySelector("nav");
-const contactBtn = document.querySelector(".contact-btn");
-const aboutMe = document.querySelector(".about-me");
+const menuBtn = document.querySelector(".menu");
+const list = document.querySelector(".list");
 
-contactBtn.addEventListener("click", () => {
-    navBar.classList.toggle("contact");
+let visible = false;
+
+menuBtn.addEventListener("click", e => {
+    e.stopPropagation();
+    if (visible) {
+        list.style.opacity = 0;
+        list.style.pointerEvents = "none";
+        visible = false;
+    } else {
+        list.style.opacity = 1;
+        list.style.pointerEvents = "all";
+        visible = true;
+    }
 });
 
-aboutMe.addEventListener("click", () => {
-    if(navBar.classList.contains("contact")){
-        navBar.classList.remove("contact");
+document.addEventListener("click", () => {
+    if (visible) {
+        list.style.opacity = 0;
+        list.style.pointerEvents = "none";
+        visible = false;
     }
 });
